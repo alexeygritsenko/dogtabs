@@ -1,3 +1,5 @@
+var globalVar = "NULL";
+
 var main = function () {
   "use strict";
   var $img = $("<img>").hide();
@@ -8,15 +10,7 @@ var main = function () {
         //просто выводим ответ в консоль
         //console.log(flickrResponse.items[0].media.m);
    
-$(".comment-input button").on("click", function (event) {
 
-  var $new_comment = $("<p>");
-  if ($(".comment-input input").val()!== "") {
-      $new_comment.text($(".comment-input input").val());
-      $(".comments").append($new_comment);
-      $(".comment-input input").val("");
-    }
-  });
 
   $(".tabs a:nth-child(1)").on("click", function () {
     // делаем все вкладки неактивными
@@ -78,6 +72,8 @@ function butevent() {
   if ($(".comment-input input").val()!== "") {
       $new_comment.text($(".comment-input input").val());
       $(".comments").append($new_comment);
+      globalVar = $(".comment-input input").val();
+      //console.log(globalVar);
       $(".comment-input input").val("");
     }
   }
