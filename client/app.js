@@ -77,7 +77,7 @@ function butevent() {
       //
       var fromFront = "{ 'name': 'Вася', 'comment': '"+globalVar+"'}";
       //setInterval(function () {
-    $.post("/jsoncomment", fromFront, function (response) {
+    $.post("jsoncomment", fromFront, function (response) {
     // это обратный вызов, выполняется при ответе сервера
     console.log("Получение данных с сервера");
     console.log(response);
