@@ -32,9 +32,10 @@ for (;;) {
 	if (globalVarLast != globalVar && globalVar != "NULL")
 	{
 		globalVarLast = globalVar;
-		writeFile('comments.txt', globalVarLast, function(err) {
-  		if (err) console.log(err);
-																});
+		//writeFile('comments.txt', globalVarLast, function(err) {
+  		//if (err) console.log(err);
+		//														});
+		console.log(globalVarLast);
 	}
 	sleep.sleep(10); //sleep for n seconds
 	console.log('Loop for end');
