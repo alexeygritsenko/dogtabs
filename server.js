@@ -25,10 +25,10 @@ app.post("/todos", function (req, res) {
   res.json({"message":"Вы разместили данные на сервере!"});
 }); */
 var globalVarLast = "NULL";
-var sleep = require('sleep');
+//var sleep = require('sleep');
 //var writeFile = require('write');
 
-for (;;) {
+setInterval(function () {
 	if (globalVarLast != globalVar && globalVar != "NULL")
 	{
 		globalVarLast = globalVar;
@@ -37,6 +37,6 @@ for (;;) {
 		//														});
 		console.log(globalVarLast);
 	}
-	sleep.sleep(10); //sleep for n seconds
+	//sleep.sleep(10); //sleep for n seconds
 	console.log('Loop for end');
-};
+  }, 5000);
