@@ -15,7 +15,7 @@ app.get("/goodbye", function (req, res) {
 res.send("Goodbye, World!");
 });
 
-app.use(express.urlencoded());
+/* app.use(express.urlencoded());
 app.post("/todos", function (req, res) {
   // сейчас объект сохраняется в req.body
   var newToDo = req.body;
@@ -23,4 +23,4 @@ app.post("/todos", function (req, res) {
   toDos.push(newToDo);
   // отправляем простой объект
   res.json({"message":"Вы разместили данные на сервере!"});
-});
+}); */
