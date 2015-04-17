@@ -79,7 +79,7 @@ function butevent() {
       var ob = {
             name: 'Вася', 
             comment: globalVar
-              }
+              };
 
       //setInterval(function () {
     $.post("jsoncomment", ob, function (response) {
