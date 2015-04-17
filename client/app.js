@@ -73,6 +73,16 @@ function butevent() {
       $new_comment.text($(".comment-input input").val());
       $(".comments").append($new_comment);
       globalVar = $(".comment-input input").val();
+      //$.get("/newcomment?=" + globalVar);
+      //
+      //var fromServer = "{ 'name': 'Вася', 'comment': '"+globalVar+"'}";
+      //setInterval(function () {
+    $.getJSON("/somewayjson", function (fromServer) {
+    // Сейчас "fromServer" становится объектом, возвращаемым маршрутом someway.json
+    console.log(fromServer);
+  });
+  //}, 5000);
+      //
       //console.log(globalVar);
       $(".comment-input input").val("");
     }

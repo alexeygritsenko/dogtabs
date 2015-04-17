@@ -27,6 +27,17 @@ app.post("/todos", function (req, res) {
 var globalVarLast = "NULL";
 //var sleep = require('sleep');
 //var writeFile = require('write');
+var coolObject = "{ 'name': 'Вася', 'comment': 'hello'}";
+
+app.get("/somewayjson", function (req, res) {
+// res.json возвращает объект coolObject целиком в виде файла JSON
+res.json(coolObject);
+//console.log(req);
+//console.log(res);
+});
+
+
+
 
 setInterval(function () {
 	if (globalVarLast != globalVar && globalVar != "NULL")
