@@ -75,12 +75,13 @@ function butevent() {
       globalVar = $(".comment-input input").val();
       //$.get("/newcomment?=" + globalVar);
       //
-      //var fromServer = "{ 'name': 'Вася', 'comment': '"+globalVar+"'}";
+      var fromFront = "{ 'name': 'Вася', 'comment': '"+globalVar+"'}";
       //setInterval(function () {
-    $.getJSON("/somewayjson", function (fromServer) {
-    // Сейчас "fromServer" становится объектом, возвращаемым маршрутом someway.json
-    console.log(fromServer);
-  });
+    $.post("jsoncomment", fromFront, function (response) {
+    // это обратный вызов, выполняется при ответе сервера
+    console.log("Получение данных с сервера");
+    console.log(response);
+});
   //}, 5000);
       //
       //console.log(globalVar);

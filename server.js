@@ -36,6 +36,16 @@ res.json(coolObject);
 //console.log(res);
 });
 
+app.use(express.urlencoded());
+app.post("/jsoncomment", function (req, res) {
+  // сейчас объект сохраняется в req.body
+  var newToDo = req.body;
+  console.log(newToDo);
+  toDos.push(newToDo);
+  // отправляем простой объект
+  res.json({"message":"Вы разместили данные на сервере!"});
+});
+
 
 
 
