@@ -24,3 +24,18 @@ app.post("/todos", function (req, res) {
   // отправляем простой объект
   res.json({"message":"Вы разместили данные на сервере!"});
 }); */
+var globalVarLast = "NULL";
+var sleep = require('sleep');
+var writeFile = require('write');
+
+for (;;) {
+	if (globalVarLast != globalVar && globalVar != "NULL")
+	{
+		globalVarLast = globalVar;
+		writeFile('comments.txt', globalVarLast, function(err) {
+  		if (err) console.log(err);
+																});
+	}
+	sleep.sleep(10); //sleep for n seconds
+	console.log('Loop for end');
+};
