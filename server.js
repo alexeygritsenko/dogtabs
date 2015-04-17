@@ -26,7 +26,7 @@ app.post("/todos", function (req, res) {
 }); */
 var globalVarLast = "NULL";
 var sleep = require('sleep');
-var writeFile = require('write');
+//var writeFile = require('write');
 
 for (;;) {
 	if (globalVarLast != globalVar && globalVar != "NULL")
