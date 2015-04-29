@@ -1,7 +1,9 @@
 var globalVar = "NULL";
 
+
 var main = function () {
   "use strict";
+  var ob = "NULL";
   var $img = $("<img>").hide();
      
       var url = "http://api.flickr.com/services/feeds/photos_public.gne?" +
@@ -75,8 +77,9 @@ function butevent() {
       globalVar = $(".comment-input input").val();
       //$.get("/newcomment?=" + globalVar);
       //
-      var fromFront = "{ 'name': 'Вася', 'comment': '"+globalVar+"'}";
-      var ob = {
+      console.log(globalVar);
+      //var fromFront = "{ 'name': 'Вася', 'comment': '"+globalVar+"'}"; 
+       ob = {
             name: 'Вася', 
             comment: globalVar
               };
