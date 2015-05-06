@@ -2,7 +2,7 @@
      "name": "npmdemo",
      "version": "1.0.0",
      "dependencies": {
-        "express": "*"
+        "express": "3.4.x"
 
      }
 }

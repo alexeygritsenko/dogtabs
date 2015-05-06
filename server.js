@@ -36,17 +36,17 @@ res.json(coolObject);
 //console.log(req);
 //console.log(res);
 });
-
-// app.use(express.urlencoded());
-// app.use(express.bodyParser());
-// app.post("/jsoncomment", function (req, res) {
-//   // сейчас объект сохраняется в req.body
-//   var newToDo = req.body;
-//   console.log(newToDo);
-//   //toDos.push(newToDo);
-//   // отправляем простой объект
-//   res.json({"message":"Вы разместили данные на сервере!"});
-// });
+//
+app.use(express.urlencoded());
+app.use(express.bodyParser());
+app.post("/jsoncomment", function (req, res) {
+  // сейчас объект сохраняется в req.body
+  var newToDo = req.body;
+  console.log(newToDo);
+  //toDos.push(newToDo);
+  // отправляем простой объект
+  res.json({"message":"Вы разместили данные на сервере!"});
+});
 
 
 
