@@ -37,7 +37,7 @@ res.json(coolObject);
 //console.log(res);
 });
 //
-app.use(express.urlencoded());
+//app.use(express.urlencoded());
 app.use(express.bodyParser());
 app.post("/jsoncomment", function (req, res) {
   // сейчас объект сохраняется в req.body
