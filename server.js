@@ -38,7 +38,11 @@ res.json(coolObject);
 });
 //
 //app.use(express.urlencoded());
-app.use(express.bodyParser());
+//app.use(express.bodyParser());
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(express.json());
 app.post("/jsoncomment", function (req, res) {
   // сейчас объект сохраняется в req.body
   var newToDo = req.body;
