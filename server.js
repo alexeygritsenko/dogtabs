@@ -1,9 +1,10 @@
 var express = require("express"),
-port = process.env.PORT || 3000, //1337,
+port = process.env.PORT || 1337, //1337 - ажур //3000 - у себя
 http = require("http"),
+counts = {},
 app = express();
+var twitter = require('ntwitter');
 // настроим статическую файловую папку для маршрута по умолчанию
-
 app.use(express.static(__dirname + "/client"));
 // создадим HTTP-сервер на базе Express
 http.createServer(app).listen(port);
@@ -40,11 +41,15 @@ res.json(coolObject);
 //app.use(express.urlencoded());
 //app.use(express.bodyParser());
 
-var bodyParser = require('body-parser');
+//var bodyParser = require('body-parser');
+//app.use(bodyParser.urlencoded({
+//  extended:true
+//}));
+//
+//app.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded());
-
-app.use(bodyParser.json());
+app.use(express.urlencoded());
+app.use(express.json());
 
 app.post("/jsoncomment", function (req, res) {
   // сейчас объект сохраняется в req.body
@@ -56,17 +61,66 @@ app.post("/jsoncomment", function (req, res) {
 });
 
 
+//____________________________________________
+
+var configJson = require('./credentials.json');
 
 
+
+
+//API ключи можно указать прямо в коде (чего, впрочм, делать не рекомендуется)
+var twit = new twitter(configJson);
+
+//twit.stream(
+//  // первый параметр — строка
+//  "statuses/filter",
+//  // второй параметр — объект, содержащий массив со словами, к. мы ищем
+//  { "track": "awesome"},
+//  // третий параметр — обратный вызов, срабатывающий, когда поток создан
+//function(stream) {
+//  stream.on("data", function(tweet) {
+//    console.log(tweet.text);
+//  });
+//  }
+//);
+
+twit.stream(
+"statuses/filter",
+{ "track": ["awesome", "cool", "rad", "gnarly", "groovy"] },
+function(stream) {
+stream.on("data", function(tweet) {
+if (tweet.indexOf("awesome") > -1) {
+// ïðèðàùåíèå ñ÷åò÷èêà äëÿ ñëîâà awesome
+counts.awesome = counts.awesome + 1;
+}
+});
+}
+);
+// ââîäèì ñ÷åò÷èê êàæäûå 3 ñåêóíäû
 setInterval(function () {
-	if (globalVarLast != globalVar && globalVar != "NULL")
-	{
-		globalVarLast = globalVar;
-		//writeFile('comments.txt', globalVarLast, function(err) {
-  		//if (err) console.log(err);
-		//														});
-		console.log(globalVarLast);
-	}
-	//sleep.sleep(10); //sleep for n seconds
-	console.log('Loop for end');
-  }, 5000);
+console.log("awesome: " + counts.awesome);
+}, 3000);
+//
+//twit
+//  .verifyCredentials(function (err, data) {
+//    console.log(data);
+//  })
+//  .updateStatus('Test tweet from ntwitter/' + twitter.VERSION,
+//    function (err, data) {
+//      console.log(data);
+//    }
+//  );
+
+//
+//setInterval(function () {
+//	if (globalVarLast != globalVar && globalVar != "NULL")
+//	{
+//		globalVarLast = globalVar;
+//		//writeFile('comments.txt', globalVarLast, function(err) {
+//  		//if (err) console.log(err);
+//		//														});
+//		console.log(globalVarLast);
+//	}
+//	//sleep.sleep(10); //sleep for n seconds
+//	console.log('Loop for end');
+//  }, 5000);

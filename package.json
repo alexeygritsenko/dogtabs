@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "body-parser": "*",
-    "express": "4.x"
+    "express": "3.4.x",
+    "ntwitter": "*"
   }
 }
