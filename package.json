@@ -1,9 +1,8 @@
 {
-     "name": "npmdemo",
-     "version": "1.0.0",
-     "dependencies": {
-        "express": "4.x",
-        "body-parser": "*"
-
-     }
+  "name": "npmdemo",
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "*",
+    "express": "4.x"
+  }
 }

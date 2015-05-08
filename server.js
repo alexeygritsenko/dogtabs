@@ -1,5 +1,5 @@
 var express = require("express"),
-port = process.env.PORT || 1337,
+port = process.env.PORT || 3000, //1337,
 http = require("http"),
 app = express();
 // настроим статическую файловую папку для маршрута по умолчанию
@@ -41,8 +41,11 @@ res.json(coolObject);
 //app.use(express.bodyParser());
 
 var bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded());
+
 app.use(bodyParser.json());
-app.use(express.json());
+
 app.post("/jsoncomment", function (req, res) {
   // сейчас объект сохраняется в req.body
   var newToDo = req.body;
