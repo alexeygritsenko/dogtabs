@@ -71,45 +71,37 @@ var configJson = require('./credentials.json');
 //API ключи можно указать прямо в коде (чего, впрочм, делать не рекомендуется)
 var twit = new twitter(configJson);
 
+
+
 //twit.stream(
-//  // первый параметр — строка
-//  "statuses/filter",
-//  // второй параметр — объект, содержащий массив со словами, к. мы ищем
-//  { "track": "awesome"},
-//  // третий параметр — обратный вызов, срабатывающий, когда поток создан
+//"statuses/filter",
+//{ "track": ["awesome", "cool", "rad", "gnarly", "groovy"] },
 //function(stream) {
-//  stream.on("data", function(tweet) {
-//    console.log(tweet.text);
-//  });
-//  }
+//stream.on("data", function(tweet) {
+//if (tweet.indexOf("awesome") > -1) {
+//// ïðèðàùåíèå ñ÷åò÷èêà äëÿ ñëîâà awesome
+//counts.awesome = counts.awesome + 1;
+//}
+//});
+//}
 //);
 
-twit.stream(
-"statuses/filter",
-{ "track": ["awesome", "cool", "rad", "gnarly", "groovy"] },
-function(stream) {
-stream.on("data", function(tweet) {
-if (tweet.indexOf("awesome") > -1) {
-// ïðèðàùåíèå ñ÷åò÷èêà äëÿ ñëîâà awesome
-counts.awesome = counts.awesome + 1;
-}
+var TweetTweet = require('tweet-tweet')
+
+var tweet = TweetTweet({
+    consumerKey: 'Kt4RBLFQYnCmnoVdq36XQQDV3',
+    consumerSecret: 'z4TfOnbOChH57zBqPGYlGGyAqZnN1Qa4WmuBWj3dxijiv1dNKM',
+    accessToken: '3193739747-iazA0X0VD9yhXr3Hq6lt8E1YaKelBl61rwBzBdi',
+    accessTokenSecret: 'j43h0kjaBzs6mYONOlcnIfXQq8CeEoV7GrmejiaRWKm3'
 });
-}
-);
+ 
+tweet('Never teach someone how to cartwheel beside a lake. #lessonlearned');
+
+
 // ââîäèì ñ÷åò÷èê êàæäûå 3 ñåêóíäû
 setInterval(function () {
 console.log("awesome: " + counts.awesome);
 }, 3000);
-//
-//twit
-//  .verifyCredentials(function (err, data) {
-//    console.log(data);
-//  })
-//  .updateStatus('Test tweet from ntwitter/' + twitter.VERSION,
-//    function (err, data) {
-//      console.log(data);
-//    }
-//  );
 
 //
 //setInterval(function () {
