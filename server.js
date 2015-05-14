@@ -26,6 +26,7 @@ app.post("/todos", function (req, res) {
   res.json({"message":"Вы разместили данные на сервере!"});
 }); */
 var globalVar = "NULL";
+globalVar = "NULL";
 var globalVarLast = "NULL";
 //var sleep = require('sleep');
 //var writeFile = require('write');

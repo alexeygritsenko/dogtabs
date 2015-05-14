@@ -4,6 +4,8 @@
   "dependencies": {
     "body-parser": "*",
     "express": "3.4.x",
-    "ntwitter": "*"
+    "ntwitter": "*",
+    "tweet-tweet": "*"
+    
   }
 }
