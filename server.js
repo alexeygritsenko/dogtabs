@@ -98,6 +98,28 @@ var tweet = TweetTweet({
  
 tweet('Never teach someone how to cartwheel beside a lake. #lessonlearned');
 
+var curli = require('curli');
+
+curli('http://www.google.com', { 'Cache-Control': 'no-cache' }, function (err, res) {
+    if (err) return console.error(err);
+    console.log(res.statusCode, res.headers);
+});
+
+var mtwitter = require('mtwitter');
+
+var mtwitterWork = new mtwitter({
+    consumer_key: 'Kt4RBLFQYnCmnoVdq36XQQDV3',
+    consumer_secret: 'z4TfOnbOChH57zBqPGYlGGyAqZnN1Qa4WmuBWj3dxijiv1dNKM',
+    access_token_key: '3193739747-iazA0X0VD9yhXr3Hq6lt8E1YaKelBl61rwBzBdi',
+    access_token_secret: 'j43h0kjaBzs6mYONOlcnIfXQq8CeEoV7GrmejiaRWKm3'
+});
+
+// Post a new status 
+var content = { status: 'Maybe he\'ll finally find his keys. /@peterfalk' };
+mtwitterWork.post('statuses/update', content, function (err, item) {
+    console.log(err, item);
+});
+
 
 // ââîäèì ñ÷åò÷èê êàæäûå 3 ñåêóíäû
 setInterval(function () {

@@ -2,10 +2,10 @@
   "name": "npmdemo",
   "version": "1.0.0",
   "dependencies": {
-    "body-parser": "*",
+    "curli": "^0.5.0",
     "express": "3.4.x",
+    "mtwitter": "^1.6.4",
     "ntwitter": "*",
     "tweet-tweet": "*"
-    
   }
 }
