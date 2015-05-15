@@ -2,7 +2,13 @@ var express = require("express"),
 port = process.env.PORT || 1337, //1337 - ажур //3000 - у себя
 http = require("http"),
 counts = {},
-app = express();
+    app = express();
+
+//твиттер иниц
+var configJson = require('./credentials.json');
+var Twitter = require('twitter');
+var client = new Twitter(configJson);
+//твиттер иниц
 
 // настроим статическую файловую папку для маршрута по умолчанию
 app.use(express.static(__dirname + "/client"));
@@ -49,32 +55,44 @@ res.json(coolObject);
 //
 //app.use(bodyParser.json());
 
-app.use(express.urlencoded());
-app.use(express.json());
+var bodyParser = require('body-parser');
+//app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.post("/jsoncomment", function (req, res) {
   // сейчас объект сохраняется в req.body
-  var newToDo = req.body;
-  console.log(newToDo);
+    var reqJson = req.body;
+    console.log(reqJson);
+    console.log(reqJson.comment);
+    
+    //теперь в твиттер
+    var otvet = PostTwit(reqJson.comment);
+
   //toDos.push(newToDo);
-  // отправляем простой объект
-  res.json({"message":"Вы разместили данные на сервере!"});
+    // отправляем простой объект    
+  res.json({"message":"Сервер получил ваши данные", "PostTwit": otvet});
 });
+
+//app.use(express.bodyParser());
+//app.post('/', function (req, res) {
+//    res.send(req.body);
+//});
+//app.listen(3000);
 
 
 //____________________________________________
 
-var configJson = require('./credentials.json');
 
-var Twitter = require('twitter');
-var client = new Twitter(configJson);
+function PostTwit(text) {
 
-client.post('statuses/update', { status: 'I Love Twitter' }, function (error, tweet, response) {
-    if (error) throw error;
-    console.log(tweet);  // Tweet body. 
-    console.log(response);  // Raw response object. 
-});
+client.post('statuses/update', { status: text }, function (error, tweet, response) {
+        if (error) throw error;
+        console.log(tweet);  // Tweet body. 
+        console.log(response);  // Raw response object. 
+        return response.statusMessage;
+    });
 
+}
 
 
 

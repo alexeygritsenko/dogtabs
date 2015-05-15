@@ -78,12 +78,14 @@ function butevent() {
       //$.get("/newcomment?=" + globalVar);
       //
       console.log(globalVar);
-      //var fromFront = "{ 'name': 'Вася', 'comment': '"+globalVar+"'}"; 
+        //var fromFront = "{ 'name': 'Вася', 'comment': '"+globalVar+"'}"; 
+        var l = new Date();
        ob = {
-            name: 'Вася', 
+            datetime: l.toLocaleString(), 
             comment: globalVar
               };
-
+        console.log("Проверим globalVar перед передачей: " + globalVar);
+        console.log("Проверим ob перед передачей: " + ob);
       //setInterval(function () {
     $.post("jsoncomment", ob, function (response) {
     // это обратный вызов, выполняется при ответе сервера

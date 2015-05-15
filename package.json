@@ -2,8 +2,10 @@
   "name": "npmdemo",
   "version": "1.0.0",
   "dependencies": {
+    "body-parser": "^1.12.4",
     "curli": "^0.5.0",
-    "express": "3.4.x",
+    "express": "^5.0.0-alpha.1",
+    "multer": "^0.1.8",
     "twitter": "^1.2.5"
   }
 }
