@@ -4,8 +4,6 @@
   "dependencies": {
     "curli": "^0.5.0",
     "express": "3.4.x",
-    "mtwitter": "^1.6.4",
-    "ntwitter": "*",
-    "tweet-tweet": "*"
+    "twitter": "^1.2.5"
   }
 }

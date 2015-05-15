@@ -3,7 +3,7 @@ port = process.env.PORT || 1337, //1337 - ажур //3000 - у себя
 http = require("http"),
 counts = {},
 app = express();
-var twitter = require('ntwitter');
+
 // настроим статическую файловую папку для маршрута по умолчанию
 app.use(express.static(__dirname + "/client"));
 // создадим HTTP-сервер на базе Express
@@ -66,59 +66,17 @@ app.post("/jsoncomment", function (req, res) {
 
 var configJson = require('./credentials.json');
 
+var Twitter = require('twitter');
+var client = new Twitter(configJson);
 
-
-
-//API ключи можно указать прямо в коде (чего, впрочм, делать не рекомендуется)
-var twit = new twitter(configJson);
-
-
-
-//twit.stream(
-//"statuses/filter",
-//{ "track": ["awesome", "cool", "rad", "gnarly", "groovy"] },
-//function(stream) {
-//stream.on("data", function(tweet) {
-//if (tweet.indexOf("awesome") > -1) {
-//// ïðèðàùåíèå ñ÷åò÷èêà äëÿ ñëîâà awesome
-//counts.awesome = counts.awesome + 1;
-//}
-//});
-//}
-//);
-
-var TweetTweet = require('tweet-tweet')
-
-var tweet = TweetTweet({
-    consumerKey: 'Kt4RBLFQYnCmnoVdq36XQQDV3',
-    consumerSecret: 'z4TfOnbOChH57zBqPGYlGGyAqZnN1Qa4WmuBWj3dxijiv1dNKM',
-    accessToken: '3193739747-iazA0X0VD9yhXr3Hq6lt8E1YaKelBl61rwBzBdi',
-    accessTokenSecret: 'j43h0kjaBzs6mYONOlcnIfXQq8CeEoV7GrmejiaRWKm3'
-});
- 
-tweet('Never teach someone how to cartwheel beside a lake. #lessonlearned');
-
-var curli = require('curli');
-
-curli('http://www.google.com', { 'Cache-Control': 'no-cache' }, function (err, res) {
-    if (err) return console.error(err);
-    console.log(res.statusCode, res.headers);
+client.post('statuses/update', { status: 'I Love Twitter' }, function (error, tweet, response) {
+    if (error) throw error;
+    console.log(tweet);  // Tweet body. 
+    console.log(response);  // Raw response object. 
 });
 
-var mtwitter = require('mtwitter');
 
-var mtwitterWork = new mtwitter({
-    consumer_key: 'Kt4RBLFQYnCmnoVdq36XQQDV3',
-    consumer_secret: 'z4TfOnbOChH57zBqPGYlGGyAqZnN1Qa4WmuBWj3dxijiv1dNKM',
-    access_token_key: '3193739747-iazA0X0VD9yhXr3Hq6lt8E1YaKelBl61rwBzBdi',
-    access_token_secret: 'j43h0kjaBzs6mYONOlcnIfXQq8CeEoV7GrmejiaRWKm3'
-});
 
-// Post a new status 
-var content = { status: 'Maybe he\'ll finally find his keys. /@peterfalk' };
-mtwitterWork.post('statuses/update', content, function (err, item) {
-    console.log(err, item);
-});
 
 
 // ââîäèì ñ÷åò÷èê êàæäûå 3 ñåêóíäû
